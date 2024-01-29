@@ -1,0 +1,26 @@
+{% extends 'guild/index.html' %}
+{% load static %}
+{% block content %}
+      <section class="wow-post__wrapper">
+        <div class="wow-post">
+          <div class="wow-post__content">
+				{% if post.photo and not post.content%}
+            <h1 class="wow-post__title"><img src="{{post.photo.url}}"></h1>
+				{% else %}
+				<h1 class="wow-post__title">{{post.title}}</h1>
+				{% endif %}
+				<div class="wow-post__text">{{post.content|linebreaks| safe}} 
+				{% if post.photo and post.content%}
+            <h1 class="wow-post__title"><img src="{{post.photo.url}}"></h1>
+				{% endif %}
+					{% if post.link %}
+				   </p>Ссылки:</p><p>
+					{% for i in post.link%}<p> 
+						<a href ='{{i}}'>{{i}}</a>, 
+				   {% endfor %} 
+					{% endif %}
+			   </div>
+          </div>
+        </div>
+      </section>
+{% endblock %}
